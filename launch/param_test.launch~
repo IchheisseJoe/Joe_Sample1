@@ -1,0 +1,6 @@
+<launch>
+	<include file="$(find Joe_Sample1)/launch/arg_test.xml"/>
+	<node pkg="Joe_Sample1" name="JoeSub" type="JoeSub" output="screen">
+		<!-- <param name="param_test" value="$(arg arg_test)"/> -->
+	</node>
+</launch>

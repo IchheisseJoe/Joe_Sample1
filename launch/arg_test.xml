@@ -1,0 +1,4 @@
+<launch>
+	<arg name="arg_test" value="einfach ein Test"/>
+	<param name="param_test" value="$(arg arg_test)"/>
+</launch>
