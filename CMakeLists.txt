@@ -8,6 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   actionlib
   roscpp
   std_msgs
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -56,6 +57,12 @@ find_package(catkin REQUIRED COMPONENTS
 #   Service1.srv
 #   Service2.srv
 # )
+add_service_files(
+  FILES
+  AddTwoInts.srv
+)
+
+
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -103,7 +110,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES Joe_Sample1
-  CATKIN_DEPENDS actionlib roscpp std_msgs
+  CATKIN_DEPENDS actionlib roscpp std_msgs message_runtime
 #  DEPENDS system_lib
 )
 
@@ -147,6 +154,14 @@ target_link_libraries(cancel_goal ${catkin_LIBRARIES})
 
 add_executable(robot_utility src/Sub.cpp)
 target_link_libraries(robot_utility ${catkin_LIBRARIES})
+
+add_executable(AddTwoIntsServer src/AddTwoIntsServer.cpp)
+target_link_libraries(AddTwoIntsServer ${catkin_LIBRARIES})
+add_dependencies(AddTwoIntsServer Joe_Sample1_gencpp)
+
+add_executable(AddTwoIntsClient src/AddTwoIntsClient.cpp)
+target_link_libraries(AddTwoIntsClient ${catkin_LIBRARIES})
+add_dependencies(AddTwoIntsClient Joe_Sample1_gencpp)
 
 #############
 ## Install ##
